@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Викторина</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style_quiz.css') }}">
+</head>
+<body>
+  <main class="quiz-card">
+    <h2 class="quiz-title">Выберите викторину</h2>
+
+    <form method="post" action="/">
+      <!-- кастомный селект -->
+      <label class="select-wrapper">
+        <select name="quiz" required>
+          {% for id, name in q_list %}
+            <option value="{{ id }}">{{ name }}</option>
+          {% endfor %}
+        </select>
+        <span class="chevron"></span>
+      </label>
+
+      <!-- центрированная кнопка -->
+      <div class="btn-wrap">
+        <button class="btn-main" type="submit">Далее</button>
+      </div>
+    </form>
+  </main>
+</body>
+</html>

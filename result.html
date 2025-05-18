@@ -1,0 +1,29 @@
+{% set percent = (right / total * 100)|round(0,'floor') %}
+{% if percent >= 80 %}
+  {% set grade = 'good' %}
+{% elif percent >= 50 %}
+  {% set grade = 'mid' %}
+{% else %}
+  {% set grade = 'bad' %}
+{% endif %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Результат викторины</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style_quiz.css') }}">
+</head>
+<body>
+  <main class="quiz-card result {{ grade }}">
+    <h2 class="quiz-title">Ваш результат</h2>
+
+    <p class="score">
+      {{ right }} из {{ total }} правильных<br>
+      <span class="percent">({{ percent }} %)</span>
+    </p>
+
+    <a href="{{ url_for('index') }}" class="btn-main back {{ grade }}">На главную</a>
+  </main>
+</body>
+</html>
